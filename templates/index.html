@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Academic Advisor — Sphinx University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="bg-blob blob1"></div>
+  <div class="bg-blob blob2"></div>
+  <div class="bg-blob blob3"></div>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-content card">
+      <h2 id="auth-title">تسجيل الدخول</h2>
+      <p id="auth-subtitle">مرحباً بك في مستشارك الأكاديمي</p>
+      
+      <div class="form-group">
+        <label>اسم المستخدم</label>
+        <input type="text" id="auth-username" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="auth-password" placeholder="Password">
+      </div>
+      
+      <div id="auth-error" class="error-msg"></div>
+      
+      <button class="check-btn" onclick="submitAuth()">
+        <span id="auth-btn-text">دخول</span>
+      </button>
+      
+      <p class="auth-switch">
+        <span id="auth-switch-text">ليس لديك حساب؟</span>
+        <a href="#" id="auth-switch-link" onclick="toggleAuthMode()">سجل الآن</a>
+      </p>
+
+      <div style="margin-top: 16px; text-align: center; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px;">
+        <a href="/admin/login" style="color: #6366f1; font-size: 0.82rem; text-decoration: none; opacity: 0.75; transition: opacity 0.2s;"
+           onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.75'">
+          🔐 دخول كمسؤول
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar Overlay for Mobile -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+      <span class="logo-icon">🎓</span>
+      <div>
+        <span class="logo-title">Smart Academic Advisor</span>
+        <span class="logo-sub">Sphinx University · AI-Powered</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span id="status-text">Connecting...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrap -->
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+         <button class="new-chat-btn sidebar-btn" onclick="newChat()">
+           <span>+</span> New Chat
+         </button>
+      </div>
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <p class="section-title">Quick Actions</p>
+          <button class="sidebar-item active" id="tab-chat-btn" onclick="switchTab('chat')">💬 AI Chat Advisor</button>
+          <button class="sidebar-item" id="tab-requirements-btn" onclick="switchTab('requirements')">📋 Graduation Checker</button>
+        </div>
+        
+        <div class="sidebar-section" id="history-section" style="display: none;">
+          <p class="section-title">Recent Chats</p>
+          <div id="history-list">
+             <!-- History items will be injected here -->
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-footer">
+         <div id="user-info-display" style="margin-bottom: 10px; font-weight: 600; color: var(--primary);"></div>
+         <button class="sidebar-btn" style="background: rgba(255,107,107,0.1); color: #ff6b6b; width: 100%; margin-bottom: 8px;" onclick="logout()">
+            تسجيل الخروج
+         </button>
+         <a href="/admin/login" target="_blank">
+           <button class="sidebar-btn" style="background: rgba(99,102,241,0.12); color: #6366f1; width: 100%; margin-bottom: 10px;">
+             🔐 لوحة الإدارة
+           </button>
+         </a>
+         <p>© 2026 Sphinx University</p>
+      </div>
+    </aside>
+
+    <main>
+    <!-- ===================== CHAT TAB ===================== -->
+    <section id="tab-chat" class="tab-content active">
+      <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+          <!-- Welcome message -->
+          <div class="msg-row bot-row">
+            <div class="avatar bot-avatar">🤖</div>
+            <div class="bubble bot-bubble">
+              <p>مرحباً! أنا مستشارك الأكاديمي الذكي في جامعة سفنكس 👋</p>
+              <p>يمكنك سؤالي عن أي موضوع أكاديمي، أو أخبرني ببياناتك (ساعات، GPA، حضور) وهحللها فوراً!</p>
+              <p class="msg-time">Now</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <div class="chat-input-area">
+          <div class="quick-chips">
+            <button class="chip" onclick="sendQuick('What are the graduation requirements?')">🎓 Graduation req.</button>
+            <button class="chip" onclick="sendQuick('What is machine learning?')">🤖 Machine Learning</button>
+            <button class="chip" onclick="sendQuick('عندي 120 ساعة وجي بتاعي 2.3 وحضوري 80% وبدرس 5 سنين')">📊 فحص بياناتي</button>
+          </div>
+          <div class="input-row">
+            <textarea
+              id="chat-input"
+              placeholder="اكتب سؤالك هنا... / Type your question here..."
+              rows="1"
+              onkeydown="handleKey(event)"
+            ></textarea>
+            <button class="send-btn" id="send-btn" onclick="sendMessage()">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== REQUIREMENTS TAB ===================== -->
+    <section id="tab-requirements" class="tab-content">
+      <div class="req-container">
+        <div class="req-header">
+          <h2>🎓 Graduation Requirements Checker</h2>
+          <p>أدخل بياناتك الأكاديمية وهيحلل الـ AI هل أنت مؤهل للتخرج</p>
+        </div>
+
+        <div class="req-layout">
+          <!-- Form -->
+          <div class="req-form-card card">
+            <h3>📝 بياناتك الأكاديمية</h3>
+
+            <div class="form-group">
+              <label>اسمك (اختياري)</label>
+              <input type="text" id="req-name" placeholder="e.g. Ahmed Mohamed"/>
+            </div>
+
+            <div class="form-group">
+              <label>الساعات المعتمدة المجتازة</label>
+              <div class="input-with-badge">
+                <input type="number" id="req-hours" placeholder="0" min="0" max="200"
+                  oninput="updateProgress('hours', this.value, 138)"/>
+                <span class="req-badge">/138</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" id="prog-hours" style="width:0%"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>المعدل التراكمي (GPA)</label>
+              <div class="input-with-badge">
+                <input type="number" id="req-gpa" placeholder="0.0" min="0" max="4" step="0.01"
+                  oninput="updateProgress('gpa', this.value, 4)"/>
+                <span class="req-badge">/4.0</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" id="prog-gpa" style="width:0%"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>نسبة الحضور (%)</label>
+              <div class="input-with-badge">
+                <input type="number" id="req-attendance" placeholder="0" min="0" max="100"
+                  oninput="updateProgress('attendance', this.value, 100)"/>
+                <span class="req-badge">%</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" id="prog-attendance" style="width:0%"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>عدد سنوات الدراسة</label>
+              <div class="input-with-badge">
+                <input type="number" id="req-years" placeholder="0" min="0" max="10"
+                  oninput="updateProgress('years', this.value, 8)"/>
+                <span class="req-badge">/8</span>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" id="prog-years" style="width:0%"></div>
+              </div>
+            </div>
+
+            <!-- Quick Status -->
+            <div class="quick-status" id="quick-status">
+              <div class="stat-item" id="stat-hours">⏳ Credit Hours: —</div>
+              <div class="stat-item" id="stat-gpa">⏳ GPA: —</div>
+              <div class="stat-item" id="stat-att">⏳ Attendance: —</div>
+              <div class="stat-item" id="stat-years">⏳ Duration: —</div>
+            </div>
+
+            <button class="check-btn" id="check-btn" onclick="checkRequirements()">
+              <span>🔍 تحليل بـ AI</span>
+            </button>
+          </div>
+
+          <!-- Result -->
+          <div class="req-result-card card" id="req-result-card">
+            <div class="result-placeholder" id="result-placeholder">
+              <div class="placeholder-icon">🎯</div>
+              <p>ادخل بياناتك الأكاديمية وانقر "تحليل بـ AI" لتحليل وضعك</p>
+            </div>
+            <div class="result-content" id="result-content" style="display:none">
+              <div class="verdict-badge" id="verdict-badge"></div>
+              <div class="result-text" id="result-text"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

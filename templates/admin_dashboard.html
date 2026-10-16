@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>لوحة الإدارة — Sphinx University</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #0f172a;
+      --surface: rgba(255,255,255,0.05);
+      --border:  rgba(255,255,255,0.1);
+      --accent:  #6366f1;
+      --red:     #ef4444;
+      --text:    #e2e8f0;
+      --muted:   #94a3b8;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── Header ── */
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 28px;
+      background: rgba(15,23,42,0.95);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .header-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; }
+    .header-logo span { font-size: 1.5rem; }
+    .header-actions { display: flex; gap: 10px; }
+    .btn-sm {
+      padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; transition: opacity 0.2s;
+    }
+    .btn-sm:hover { opacity: 0.82; }
+    .btn-outline {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-danger { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+
+    /* ── Layout ── */
+    .container { max-width: 860px; margin: 40px auto; padding: 0 20px; }
+    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 30px; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 28px;
+    }
+    .card h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 20px; color: #c7d2fe; }
+
+    /* ── Form ── */
+    .form-row { display: grid; grid-template-columns: 1fr 2fr; gap: 14px; margin-bottom: 14px; }
+    @media(max-width:600px){ .form-row { grid-template-columns: 1fr; } }
+    label { display: block; color: var(--muted); font-size: 0.82rem; margin-bottom: 5px; font-weight: 500; }
+    input, textarea {
+      width: 100%; padding: 11px 14px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 9px; color: var(--text);
+      font-size: 0.95rem; outline: none; resize: vertical;
+      transition: border 0.2s; font-family: inherit;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    .btn-add {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff; border: none; border-radius: 9px;
+      padding: 11px 24px; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s; margin-top: 4px;
+    }
+    .btn-add:hover { opacity: 0.88; }
+    .msg { font-size: 0.85rem; margin-top: 10px; min-height: 18px; }
+    .msg.ok  { color: #4ade80; }
+    .msg.err { color: #f87171; }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th { color: var(--muted); font-weight: 600; text-align: right; padding: 10px 12px;
+         border-bottom: 1px solid var(--border); white-space: nowrap; }
+    td { padding: 12px 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
+         vertical-align: top; word-break: break-word; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,0.03); }
+    .key-cell { color: #a5b4fc; font-weight: 500; max-width: 220px; }
+    .val-cell  { color: var(--text); max-width: 420px; }
+    .del-btn {
+      background: rgba(239,68,68,0.12); color: var(--red);
+      border: 1px solid rgba(239,68,68,0.25); border-radius: 7px;
+      padding: 5px 12px; cursor: pointer; font-size: 0.82rem;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .del-btn:hover { background: rgba(239,68,68,0.22); }
+    .empty { text-align: center; color: var(--muted); padding: 30px 0; font-size: 0.9rem; }
+    .badge {
+      display: inline-block; background: rgba(99,102,241,0.2); color: #a5b4fc;
+      border-radius: 20px; padding: 2px 10px; font-size: 0.78rem; font-weight: 600;
+      margin-right: 8px;
+    }
+    .tip {
+      background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 10px; padding: 14px 18px; color: #c7d2fe; font-size: 0.85rem;
+      line-height: 1.6; margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo">
+    <span>🛡️</span>
+    <div>
+      <div>لوحة الإدارة</div>
+      <div style="font-size:0.75rem; color:var(--muted); font-weight:400;">Sphinx University Admin Panel</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="/" target="_blank"><button class="btn-sm btn-outline">🌐 فتح الشات</button></a>
+    <button class="btn-sm btn-danger" onclick="doLogout()">تسجيل خروج</button>
+  </div>
+</header>
+
+<div class="container">
+  <h1>📊 إدارة بيانات البوت</h1>
+  <p class="sub">البيانات اللي تضيفها هنا بتظهر فوراً للبوت ويستخدمها في إجاباته</p>
+
+  <!-- Add Form -->
+  <div class="card">
+    <h2>➕ إضافة / تعديل معلومة</h2>
+
+    <div class="tip">
+      💡 <strong>مثال:</strong> المفتاح = "موعد امتحان البرمجة" والقيمة = "10 يونيو 2026 الساعة 10 صباحاً قاعة 5"
+      <br>لو المفتاح موجود قبل كده — القيمة بتتحدث تلقائياً.
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label>المفتاح (اسم المعلومة)</label>
+        <input type="text" id="inp-key" placeholder="مثال: موعد امتحان الرياضيات"/>
+      </div>
+      <div>
+        <label>القيمة (تفاصيل المعلومة)</label>
+        <textarea id="inp-val" rows="3" placeholder="مثال: 15 يونيو 2026 — الساعة 9 صباحاً — قاعة 3"></textarea>
+      </div>
+    </div>
+    <button class="btn-add" onclick="addData()">💾 حفظ في قاعدة البيانات</button>
+    <p class="msg" id="add-msg"></p>
+  </div>
+
+  <!-- Data Table -->
+  <div class="card">
+    <h2>📋 البيانات الحالية <span class="badge" id="count-badge">0</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>المفتاح</th>
+            <th>القيمة</th>
+            <th>التاريخ</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody id="data-tbody">
+          <tr><td colspan="5" class="empty">جاري التحميل...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  async function loadData() {
+    try {
+      const res  = await fetch('/admin/api/data');
+      const json = await res.json();
+      if (!json.success) return;
+      const rows  = json.data;
+      const tbody = document.getElementById('data-tbody');
+      document.getElementById('count-badge').textContent = rows.length;
+
+      if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="empty">لا توجد بيانات بعد — أضف أول معلومة 👆</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = rows.map((r, i) => `
+        <tr>
+          <td style="color:var(--muted); width:40px;">${i+1}</td>
+          <td class="key-cell">${escHtml(r.key)}</td>
+          <td class="val-cell">${escHtml(r.value)}</td>
+          <td style="color:var(--muted); font-size:0.8rem; white-space:nowrap;">${r.created_at ? r.created_at.slice(0,16) : ''}</td>
+          <td><button class="del-btn" onclick="deleteData(${r.id})">🗑️ حذف</button></td>
+        </tr>
+      `).join('');
+    } catch(e) {
+      console.error(e);
+    }
+  }
+
+  async function addData() {
+    const key   = document.getElementById('inp-key').value.trim();
+    const value = document.getElementById('inp-val').value.trim();
+    const msg   = document.getElementById('add-msg');
+    if (!key || !value) { showMsg(msg, 'الحقلان مطلوبان', 'err'); return; }
+
+    showMsg(msg, 'جاري الحفظ...', '');
+    try {
+      const res  = await fetch('/admin/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key, value })
+      });
+      const json = await res.json();
+      if (json.success) {
+        showMsg(msg, '✅ تم الحفظ بنجاح! البوت يعرف المعلومة دي دلوقت.', 'ok');
+        document.getElementById('inp-key').value = '';
+        document.getElementById('inp-val').value = '';
+        loadData();
+      } else {
+        showMsg(msg, '❌ ' + (json.error || 'خطأ'), 'err');
+      }
+    } catch {
+      showMsg(msg, '❌ خطأ في الاتصال', 'err');
+    }
+  }
+
+  async function deleteData(id) {
+    if (!confirm('هل تريد حذف هذه المعلومة؟')) return;
+    try {
+      const res  = await fetch(`/admin/api/data/${id}`, { method: 'DELETE' });
+      const json = await res.json();
+      if (json.success) loadData();
+    } catch(e) { alert('خطأ في الحذف'); }
+  }
+
+  async function doLogout() {
+    await fetch('/admin/logout', { method: 'POST' });
+    window.location.href = '/admin/login';
+  }
+
+  function showMsg(el, text, cls) {
+    el.textContent = text;
+    el.className   = 'msg ' + cls;
+  }
+
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  loadData();
+</script>
+</body>
+</html>

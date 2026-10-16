@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تسجيل دخول الإدارة — Sphinx University</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    }
+    .logo { text-align: center; margin-bottom: 28px; }
+    .logo-icon { font-size: 48px; display: block; margin-bottom: 8px; }
+    h2 { color: #fff; font-size: 1.5rem; font-weight: 700; }
+    p.sub { color: #94a3b8; font-size: 0.9rem; margin-top: 4px; }
+    .form-group { margin-bottom: 18px; }
+    label { display: block; color: #cbd5e1; font-size: 0.85rem; margin-bottom: 6px; font-weight: 500; }
+    input {
+      width: 100%; padding: 12px 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      color: #fff; font-size: 1rem;
+      outline: none; transition: border 0.2s;
+    }
+    input:focus { border-color: #6366f1; }
+    .btn {
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border: none; border-radius: 10px;
+      color: #fff; font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s;
+      margin-top: 6px;
+    }
+    .btn:hover { opacity: 0.88; }
+    .error { color: #f87171; font-size: 0.85rem; margin-top: 10px; min-height: 18px; text-align: center; }
+    .back { text-align: center; margin-top: 18px; }
+    .back a { color: #818cf8; text-decoration: none; font-size: 0.88rem; }
+    .back a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <span class="logo-icon">🛡️</span>
+      <h2>لوحة تحكم الإدارة</h2>
+      <p class="sub">Sphinx University Admin Panel</p>
+    </div>
+    <div class="form-group">
+      <label>اسم المستخدم</label>
+      <input type="text" id="username" placeholder="admin" autocomplete="username"/>
+    </div>
+    <div class="form-group">
+      <label>كلمة المرور</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"
+             onkeydown="if(event.key==='Enter') doLogin()"/>
+    </div>
+    <p class="error" id="error-msg"></p>
+    <button class="btn" onclick="doLogin()">دخول</button>
+    <div class="back"><a href="/">← العودة للشات</a></div>
+  </div>
+
+  <script>
+    async function doLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errEl    = document.getElementById('error-msg');
+      if (!username || !password) { errEl.textContent = 'أدخل اسم المستخدم وكلمة المرور'; return; }
+      errEl.textContent = 'جاري التحقق...';
+      try {
+        const res  = await fetch('/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (data.success) {
+          window.location.href = '/admin/dashboard';
+        } else {
+          errEl.textContent = data.error || 'بيانات غير صحيحة';
+        }
+      } catch {
+        errEl.textContent = 'خطأ في الاتصال بالخادم';
+      }
+    }
+  </script>
+</body>
+</html>

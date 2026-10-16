@@ -1,0 +1,81 @@
+---
+Sphinx University was established in 2019 and is located in New Assiut City. The university began its academic journey in the 2020/2021 academic year. It aims to provide high-quality education while supporting scientific research and community service. The university includes several facilities such as air-conditioned lecture halls, equipped laboratories, computer services, transportation services, and cafeterias.
+
+The university aims to prepare competitive graduates who are capable of meeting labor market demands, support innovation, encourage international collaboration, serve the community, and develop research capabilities.
+
+The Faculty of Computers and Artificial Intelligence has a vision to achieve leadership in the fields of computing and artificial intelligence at both the local and regional levels. Its mission is to prepare qualified graduates in computing and AI disciplines. The faculty is based on a set of core values, including quality, fairness, teamwork, innovation, and national belonging
+
+The faculty includes three main departments: Artificial Intelligence, Bioinformatics, and Cyber Security.
+
+The study system is based on the Credit Hour System, where one credit hour equals one lecture hour, or 2–3 lab hours, or 4 training hours. The total number of credit hours required for graduation is 138. The language of study is English. The learning mode is divided into 60% face-to-face learning and 40% online learning. Specialization begins from the third academic level.
+
+The academic year consists of three semesters: Fall and Spring semesters, each lasting 16 weeks, and a Summer semester lasting 8 weeks.
+
+The minimum study duration is 6 semesters, while the maximum allowed duration is up to 8 years.
+
+Registration rules state that students with a GPA between 2.0 and 3.0 can register for a maximum of 18 credit hours. Students with a GPA above 3.0 may register for up to 21 credit hours with approval. In the summer semester, the maximum load is 9 credit hours. Prerequisite courses are required before enrolling in advanced subjects, and registration is confirmed after paying fees.
+
+The academic levels are structured as follows: freshman level requires 30 credit hours, sophomore level 63 credit hours, junior level 98 credit hours, and senior level 138 credit hours.
+
+The grading system considers 50% as the passing grade, and a minimum GPA of 2.0 is required for graduation. Attendance of at least 75% is mandatory. Failure may occur due to scoring less than 50%, absence without excuse, or disciplinary actions.
+
+The GPA scale ranges from A+ to F, where A+ equals 4.0 points and F equals 0.0 points.
+
+Graduation requirements include achieving a minimum GPA of 2.0, completing a graduation project with at least 50% passing grade, and completing mandatory training. The graduation project lasts for two semesters.
+
+Training is required for students, lasts for 6 weeks, and becomes mandatory after completing 47% of credit hours. It is graded on a Pass/Fail basis and does not affect the GPA.
+
+Warnings are issued if the GPA falls below 2.0. Students may be dismissed due to consistently low GPA, exceeding the maximum study duration, or repeated absence.
+
+The university provides well-equipped lecture halls that include computers and projectors to support modern teaching methods.
+
+The laboratories include Physics Lab, Chemistry Lab, Computer Lab, Networks Lab, and Artificial Intelligence Lab, all designed to support both practical learning and scientific experiments.
+
+The university library is available for students and contains a wide range of books as well as computers to support research and study activities.
+
+Student activities at the university include sports, cultural events, educational trips, conferences, and participation in student unions, helping to develop students’ social and leadership skills.
+
+If any information is not specified in the academic regulations, it is considered not available or not defined.
+The curriculum data represents a structured academic plan organized into multiple common study levels.
+
+The curriculum is divided into levels and semesters, where each level contains a set of required courses with their codes, names, credit hours, and prerequisites.
+
+In Level 1, Semester 1, students study foundational courses including English (1) with 2 credit hours, Calculus with 3 credit hours, Linear Algebra with 3 credit hours, Physics with 3 credit hours, Information Technology with 2 credit hours, Introduction to Computer Systems with 2 credit hours, and Basic Electricity & Electronics with 3 credit hours. All these courses have no prerequisites.
+
+In Level 1, Semester 2, students study English (2) with 2 credit hours, which requires English (1). They also study Probability and Statistics with 3 credit hours, which requires Linear Algebra, Structural Programming with 3 credit hours, which requires Introduction to Computer Systems, Database Management Systems with 3 credit hours with no prerequisites, Discrete Structures with 3 credit hours, which requires Linear Algebra, and Introduction to Artificial Intelligence with 3 credit hours with no prerequisites.
+
+In Level 2, Semester 1, students study Algorithms and Data Structures with 2 credit hours, which requires Linear Algebra, Modeling and Simulation with 3 credit hours, which requires Structural Programming, Computer Networks and Data Communication with 3 credit hours, which requires Introduction to Computer Systems, Computer Architecture with 3 credit hours, which requires Introduction to Computer Systems, Machine Learning and Pattern Recognition with 3 credit hours, which requires Introduction to Artificial Intelligence, and Digital Logic Design with 3 credit hours, which requires Basic Electricity & Electronics.
+
+In Level 2, Semester 2, students study Data Mining and Exploration with 3 credit hours, which requires Algorithms and Data Structures. They also study University Elective Course 1 with 2 credit hours with no prerequisites, AI Programming Languages with 3 credit hours, which requires Introduction to Artificial Intelligence, Processing Formal and Natural Languages with 3 credit hours, which requires Machine Learning and Pattern Recognition, and a Work-based Professional Project with 6 credit hours, which requires Structural Programming and Database Management Systems.
+The Artificial Intelligence specialization represents an advanced academic track that continues from the general study levels into specialized AI-focused courses across Level 3 and Level 4, including elective pools and graduation projects.
+
+In Level 3, Semester 1, students study core AI specialization courses. These include Computer Graphics and Vision with 3 credit hours, which requires Linear Algebra. Operations Research with 2 credit hours, which requires Probability and Statistics. Cloud Architecture and Computing with 3 credit hours, which requires Computer Architecture. Agent-Based Systems with 3 credit hours, which requires Modeling and Simulation. Computational Cognitive Science with 3 credit hours, which also requires Modeling and Simulation. In addition, students study an elective course in Artificial Intelligence (1) with 3 credit hours.
+
+In Level 3, Semester 2, students continue with advanced topics. They study a University Elective Course 2 with 2 credit hours, Automated Reasoning with 3 credit hours, Human Computer Interaction with 3 credit hours, Embedded Systems and Automation with 3 credit hours, Computational Neuroscience with 2 credit hours, and Big Data Analytics with 3 credit hours.
+
+The specialization also includes an Electives Pool, which provides optional advanced courses. These include Fog Computing, Virtual Environment, Cyber Security Risk Management, Cloud Storage Infrastructure, Software Architecture and Interoperability, Cloud Strategy Planning and Management, New Trends in IoT, and New Trends in AI. Each elective course in this pool has 3 credit hours.
+
+In Level 4, Semester 1, students study highly advanced and integrative topics. These include Principles and Design of IoT Systems with 3 credit hours, Theory of Automata and Formal Languages with 3 credit hours, Interactive Systems Design with 3 credit hours, Cyber-Physical Systems with 3 credit hours, Graduation Project in AI (Part I) with 3 credit hours, and an Elective Course in AI (2) with 3 credit hours.
+
+In Level 4, Semester 2, students complete their final specialization requirements. These include Data Center Virtualization with 2 credit hours, Embedded and Real-Time Operating Systems with 3 credit hours, Wireless Sensor Protocols and Programming with 3 credit hours, Deep Learning with 3 credit hours, Graduation Project in AI (Part II) with 3 credit hours, and an Elective Course in AI (3) with 3 credit hours.
+The Bioinformatics specialization focuses on applying computer science techniques to solve biological problems such as genetic engineering and drug development.
+
+In Level 3, Semester 1, students study a combination of computing, biological, and general courses. These include Cloud Architecture and Computing with 3 credit hours, Operations Research with 2 credit hours, Introduction to Bioinformatics with 2 credit hours, Intellectual Property with 2 credit hours, Biological Database with 3 credit hours, Molecular and Cell Biology with 3 credit hours, and a University Elective Course 2 with 2 credit hours.
+
+In Level 4, Semester 1, students study advanced bioinformatics and computational biology subjects. These include Genetic Engineering with 3 credit hours, which requires a prerequisite course in Biological Data Structures or related biology foundations, and Bioinformatics Programming with 3 credit hours, which requires Structural Programming.
+
+In Level 4, Semester 2, students complete advanced specialization courses. These include Basic Modeling in Biotechnology with 3 credit hours, Biometrics with 3 credit hours, Computational Gene Finding and Genome Assembly with 3 credit hours, Deep Learning with 3 credit hours, Graduation Project in Bioinformatics (Part II) with 3 credit hours, and an Elective Course in Bioinformatics (3) with 3 credit hours.
+
+The electives pool provides additional specialized courses to support deeper learning in related fields. These include Computer Security and Cryptography, Computational Cognitive Science, Methods and Applications of Molecular Modeling, Multicellular Life, Recombinant DNA Techniques, and New Trends in Bioinformatics. Each elective course has 3 credit hours.
+
+The Cyber Security specialization focuses on protecting computer systems, data centers, networks, and performing digital forensics and security analysis.
+
+In Level 3, Semester 1, students study a combination of security, computing, and interdisciplinary courses. These include Computer Security and Cryptography with 3 credit hours, Operations Research with 2 credit hours, Cloud Architecture and Computing with 3 credit hours, Intellectual Property with 2 credit hours, Agent-Based Systems with 2 credit hours, Computational Cognitive Science with 3 credit hours, and a University Elective Course 2 with 2 credit hours.
+
+In Level 3, Semester 2, students study advanced computing and AI-related supporting subjects. These include Big Data Analytics with 3 credit hours, Computational Neuroscience with 2 credit hours, Automated Reasoning with 3 credit hours, Human Computer Interaction with 3 credit hours, Embedded Systems and Automation with 3 credit hours, and an Elective Course in Cyber Security (1) with 3 credit hours.
+
+In Level 4, Semester 1, students focus on core cyber security foundations and applied security systems. These include Foundations of Cyber Security with 3 credit hours, which requires Computer Security and Cryptography, Cyber Incident Response and Computer Network Forensics with 3 credit hours, which also requires Computer Security and Cryptography, Network Visualization and Vulnerability Detection with 2 credit hours, Cyber-Physical Systems with 3 credit hours requiring Embedded Systems and Automation and Computer Security, Graduation Project in Cyber Security (Part I) with 3 credit hours requiring completion of the major project prerequisites, and an Elective Course in Cyber Security (2) with 3 credit hours.
+
+In Level 4, Semester 2, students complete advanced specialization and final projects. These include Secure Systems Architecture with 3 credit hours, Cyber Security Risk Management with 3 credit hours, Verification of Formal Reactive Systems with 3 credit hours, Digital Forensics with 3 credit hours, Graduation Project in Cyber Security (Part II) with 3 credit hours, and an Elective Course in Cyber Security (3) with 3 credit hours.
+
+The electives pool provides additional specialization opportunities. AI electives include Fog Computing, Virtual Environment, and New Trends in AI. Cyber Security electives include Ethical Hacking, Cyber Criminology, and Cyber Intelligence.
