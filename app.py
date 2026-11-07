@@ -226,7 +226,9 @@ def register():
         return jsonify({"error": "بيانات الطلب غير صالحة"}), 400
     try:
         username = bounded_text(data.get("username"), "username", 80)
-        password = bounded_text(data.get("password"), "password", 256)
+        password = data.get("password")
+        if not isinstance(password, str) or not password.strip() or len(password) > 256:
+            raise ValueError("كلمة المرور غير صالحة")
     except ValueError as exc:
         return jsonify({"error": str(exc)}), 400
     if len(username) < 3 or not re.fullmatch(r"[\w.@+-]+", username, flags=re.UNICODE):
@@ -339,10 +341,10 @@ def check_requirements():
             if not math.isfinite(value) or not minimum <= value <= maximum:
                 raise ValueError
             return value
-        credit_hours = number("credit_hours", 0, 138)
+        credit_hours = number("credit_hours", 0, 250)
         gpa = number("gpa", 0, 4)
         attendance = number("attendance", 0, 100)
-        years = number("years", 0, 8)
+        years = number("years", 0, 100)
     except (TypeError, ValueError):
         return jsonify({"error": "راجع الساعات وGPA والحضور وعدد السنوات"}), 400
 
