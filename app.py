@@ -20,7 +20,7 @@ app = Flask(
     template_folder=os.path.join(base_dir, "templates"),
 )
 
-is_production = bool(os.environ.get("RAILWAY_ENVIRONMENT") or os.environ.get("FLASK_ENV") == "production")
+is_production = bool(os.environ.get("RAILWAY_ENVIRONMENT") or os.environ.get("APP_ENV") == "production" or os.environ.get("FLASK_ENV") == "production")
 secret_key = os.environ.get("SECRET_KEY")
 if not secret_key and os.environ.get("FLASK_DEBUG") != "1":
     raise RuntimeError("Set SECRET_KEY before starting the app. FLASK_DEBUG=1 is for local development only.")
