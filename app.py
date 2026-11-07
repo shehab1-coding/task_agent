@@ -255,7 +255,9 @@ def login():
         return jsonify({"error": "بيانات الطلب غير صالحة"}), 400
     try:
         username = bounded_text(data.get("username"), "username", 80)
-        password = bounded_text(data.get("password"), "password", 256)
+        password = data.get("password")
+        if not isinstance(password, str) or not password.strip() or len(password) > 256:
+            raise ValueError("invalid password")
     except ValueError:
         return jsonify({"error": "اسم المستخدم أو كلمة المرور غير صحيحة"}), 401
     user = User.query.filter_by(username=username).first()
