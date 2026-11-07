@@ -29,7 +29,7 @@ app.config.update(
     MAX_CONTENT_LENGTH=16 * 1024,
     PERMANENT_SESSION_LIFETIME=timedelta(days=7),
     SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "true").lower() == "true",
+    SESSION_COOKIE_SECURE=os.environ.get("SESSION_COOKIE_SECURE", "true" if is_production else "false").lower() == "true",
     SESSION_COOKIE_SAMESITE="Lax",
 )
 
