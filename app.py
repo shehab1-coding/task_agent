@@ -22,8 +22,8 @@ app = Flask(
 
 is_production = bool(os.environ.get("RAILWAY_ENVIRONMENT") or os.environ.get("FLASK_ENV") == "production")
 secret_key = os.environ.get("SECRET_KEY")
-if is_production and not secret_key:
-    raise RuntimeError("Set SECRET_KEY in the deployment environment before starting the app.")
+if not secret_key and os.environ.get("FLASK_DEBUG") != "1":
+    raise RuntimeError("Set SECRET_KEY before starting the app. FLASK_DEBUG=1 is for local development only.")
 app.secret_key = secret_key or secrets.token_urlsafe(32)
 app.config.update(
     MAX_CONTENT_LENGTH=16 * 1024,
@@ -150,9 +150,9 @@ def protect_unsafe_origins():
         return None
     origin = request.headers.get("Origin")
     if origin:
-        expected = urlsplit(request.host_url)
         supplied = urlsplit(origin)
-        if (supplied.scheme, supplied.netloc) != (expected.scheme, expected.netloc):
+        expected_scheme = "https" if is_production else request.scheme
+        if supplied.scheme != expected_scheme or supplied.netloc.lower() != request.host.lower():
             return jsonify({"error": "الطلب مرفوض"}), 403
     return None
 
