@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.env
+.env.*
+!.env.example
+instance/*.db
+instance/*.sqlite
+instance/*.sqlite3
