@@ -71,7 +71,7 @@ function toggleAuthMode() {
 
 async function submitAuth() {
     const username = document.getElementById("auth-username").value.trim();
-    const password = document.getElementById("auth-password").value.trim();
+    const password = document.getElementById("auth-password").value;
     const errorEl = document.getElementById("auth-error");
     
     if (!username || !password) {
@@ -253,9 +253,15 @@ function appendMessage(text, sender) {
     container.scrollTop = container.scrollHeight;
 }
 
+function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[char]);
+}
+
 function formatText(text) {
-    // Convert **bold**, *italic*, newlines, numbered lists, bullets
-    return text
+    // Escape all untrusted text before applying the limited formatting below.
+    return escapeHtml(text)
         .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
         .replace(/\*(.+?)\*/g, "<em>$1</em>")
         .replace(/```[\s\S]*?```/g, "")
@@ -263,7 +269,6 @@ function formatText(text) {
         .replace(/\n/g, "<br>")
         .replace(/^- (.+)/gm, "• $1");
 }
-
 function showTyping() {
     const container = document.getElementById("chat-messages");
     const row = document.createElement("div");
@@ -394,7 +399,6 @@ function updateQuickStatus() {
 }
 
 async function checkRequirements() {
-    const name = document.getElementById("req-name").value || "Student";
     const hours = parseFloat(document.getElementById("req-hours").value) || 0;
     const gpa = parseFloat(document.getElementById("req-gpa").value) || 0;
     const att = parseFloat(document.getElementById("req-attendance").value) || 0;
@@ -417,7 +421,6 @@ async function checkRequirements() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                name: name,
                 credit_hours: hours,
                 gpa: gpa,
                 attendance: att,
