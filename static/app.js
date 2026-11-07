@@ -399,7 +399,6 @@ function updateQuickStatus() {
 }
 
 async function checkRequirements() {
-    const name = document.getElementById("req-name").value || "Student";
     const hours = parseFloat(document.getElementById("req-hours").value) || 0;
     const gpa = parseFloat(document.getElementById("req-gpa").value) || 0;
     const att = parseFloat(document.getElementById("req-attendance").value) || 0;
@@ -422,7 +421,6 @@ async function checkRequirements() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                name: name,
                 credit_hours: hours,
                 gpa: gpa,
                 attendance: att,
