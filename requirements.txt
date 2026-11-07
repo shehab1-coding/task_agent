@@ -1,6 +1,6 @@
 flask
-flask-cors
 google-generativeai
 gunicorn
 Flask-SQLAlchemy
 Werkzeug
+Flask-Limiter>=3.8,<5
