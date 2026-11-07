@@ -33,6 +33,7 @@ app.config.update(
     SESSION_COOKIE_SAMESITE="Lax",
 )
 
+os.makedirs(os.path.join(base_dir, "instance"), exist_ok=True)
 db_url = os.environ.get("DATABASE_URL", "sqlite:///" + os.path.join(base_dir, "instance", "database.db"))
 if db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://", 1)
