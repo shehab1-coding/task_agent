@@ -71,7 +71,7 @@ function toggleAuthMode() {
 
 async function submitAuth() {
     const username = document.getElementById("auth-username").value.trim();
-    const password = document.getElementById("auth-password").value.trim();
+    const password = document.getElementById("auth-password").value;
     const errorEl = document.getElementById("auth-error");
     
     if (!username || !password) {
