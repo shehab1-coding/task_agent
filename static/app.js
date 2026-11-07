@@ -253,9 +253,15 @@ function appendMessage(text, sender) {
     container.scrollTop = container.scrollHeight;
 }
 
+function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[char]);
+}
+
 function formatText(text) {
-    // Convert **bold**, *italic*, newlines, numbered lists, bullets
-    return text
+    // Escape all untrusted text before applying the limited formatting below.
+    return escapeHtml(text)
         .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
         .replace(/\*(.+?)\*/g, "<em>$1</em>")
         .replace(/```[\s\S]*?```/g, "")
@@ -263,7 +269,6 @@ function formatText(text) {
         .replace(/\n/g, "<br>")
         .replace(/^- (.+)/gm, "• $1");
 }
-
 function showTyping() {
     const container = document.getElementById("chat-messages");
     const row = document.createElement("div");
